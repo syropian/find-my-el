@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>find-my-el demo</title>
+    <style media="screen">
+      .el {
+        background: #5dc1a4;
+        position: absolute;
+        width: 200px;
+        height: 200px;
+      }
+      .first {
+        top: 20px; left: 20px;
+      }
+      .second {
+        bottom: 20px; left: 20px;
+      }
+      .third {
+        top: 20px; right: 20px;
+      }
+      .fourth {
+        bottom: 20px; right: 20px;
+      }
+      .fifth {
+        transform: translate(-50%, -50%);
+        top: 50%; left: 50%;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="el first"></div>
+    <div class="el second"></div>
+    <div class="el third"></div>
+    <div class="el fourth"></div>
+    <div class="el fifth"></div>
+    <script src="index.umd.js"></script>
+  </body>
+</html>
