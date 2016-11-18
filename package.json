@@ -1,6 +1,6 @@
 {
   "name": "find-my-el",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Locates DOM elements closest to given coordinates",
   "main": "index.js",
   "scripts": {
