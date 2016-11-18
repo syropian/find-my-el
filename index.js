@@ -220,6 +220,9 @@ function closestElementTo(position, nodes) {
   var index = 0;
   var distances = [];
   if (position.constructor === Array) {
+    if (coordinates[0] < 0 || coordinates[1] < 0) {
+      throw new Error('Coordinates cannot be negative values');
+    }
     x = coordinates[0];
     y = coordinates[1];
   } else if (typeof position === 'string') {
