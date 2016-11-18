@@ -1,7 +1,7 @@
 {
   "name": "find-my-el",
   "version": "1.0.1",
-  "description": "Locates DOM elements closest to given coordinates",
+  "description": "Locates the DOM element closest to a given set of coordinates",
   "main": "index.js",
   "scripts": {
     "build:all": "npm run build && npm run build:umd && cp index.umd.js demo",
