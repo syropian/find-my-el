@@ -48,3 +48,7 @@ There are various keywords you can use as a shorthand for various positions. The
 - `LEFT_BOTTOM`
 - `RIGHT_BOTTOM`
 - `CENTER_BOTTOM`
+
+## How is this different from `document.getElementAtPoint`?
+
+`find-my-el` has some key differences that sets it apart from the native `document.getElementAtPoint` function. The first is it lets you restrict your search to a specific list of DOM nodes. This lets you avoid issues such as a resulting node ending up being a parent element instead of a child node that you're trying to target. The other difference is `find-my-el` looks for the _closest_ element to the coordinates — even if it's not actually touching them.   
