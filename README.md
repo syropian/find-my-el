@@ -37,10 +37,12 @@ findMyEl([x, y], nodes)
 
 #### position
 Type: `string` or `array`
+
 The coordinates to check against. You may use the [position keywords](#position-keywords), or pass an array of `[x, y]` coordinates.
 
 #### nodes
 Type: `NodeList`
+
 The collection of nodes to check.
 
 #### options
