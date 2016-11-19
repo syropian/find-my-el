@@ -49,12 +49,14 @@ The collection of nodes to check.
 
 ##### container
 Type: `Element`
+
 Default: `window`
 
 Restricts the surface area of the check to the container bounds.
 
 ##### axis
 Type: `string`
+
 Default: `both`
 
 Allows you to limit which axis to check. Accepts `x`, `y`, or `both`.
