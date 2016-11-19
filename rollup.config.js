@@ -4,7 +4,6 @@ import uglify from 'rollup-plugin-uglify';
 
 const env = process.env.BUILD_ENV
 const dest = env === "cjs" ? "index.js" : "index.umd.js"
-const moduleName = env === "cjs" ? "findMyEl" : "closestElementTo"
 const plugins = [babel({
   exclude: "node_modules/**"
 })]
@@ -17,5 +16,5 @@ export default {
   plugins: plugins,
   dest,
   format: env,
-  moduleName: moduleName
+  moduleName: "findMyEl"
 }

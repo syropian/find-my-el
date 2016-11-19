@@ -4,37 +4,69 @@
     <meta charset="utf-8">
     <title>find-my-el demo</title>
     <style media="screen">
-      .el {
-        background: #5dc1a4;
-        position: absolute;
-        width: 200px;
-        height: 200px;
+      html, body {
+        height: 100%;
+        margin: 0;
       }
-      .first {
-        top: 20px; left: 20px;
+      body {
+        display: flex; align-items: center;
+        position: relative;
       }
-      .second {
-        bottom: 20px; left: 20px;
+      .container {
+        border: 2px solid #6dd38f;
+        width: 600px;
+        margin: 0 auto;
+        height: 30vh;
+        overflow: auto;
       }
-      .third {
-        top: 20px; right: 20px;
-      }
-      .fourth {
-        bottom: 20px; right: 20px;
-      }
-      .fifth {
-        transform: translate(-50%, -50%);
-        top: 50%; left: 50%;
-      }
-
     </style>
   </head>
   <body>
-    <div class="el first"></div>
-    <div class="el second"></div>
-    <div class="el third"></div>
-    <div class="el fourth"></div>
-    <div class="el fifth"></div>
+    <div class="container" onscroll="scrolled()">
+      <ul>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+        <li>Hello World</li>
+      </ul>
+    </div>
+    <script>
+    function scrolled() {
+      [].forEach.call(document.querySelectorAll('li'), function(item) {
+        item.style.color = "black"
+      });
+      findMyEl('CENTER', document.querySelectorAll('li'), { container: document.querySelector('.container'), axis: "y" }).style.color = "red"
+    }
+    [].forEach.call(document.querySelectorAll('li'), function(item) {
+      item.style.marginBottom = Math.floor(Math.random() * 40) + 20 + "px";
+    });
+    </script>
     <script src="index.umd.js"></script>
   </body>
 </html>

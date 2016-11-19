@@ -214,11 +214,32 @@ var toConsumableArray = function (arr) {
   }
 };
 
-function closestElementTo(position, nodes) {
+function findMyEl(position, nodes) {
+  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+  var defaults$$1 = {
+    container: window,
+    axis: "both"
+  };
+  var opts = Object.assign({}, defaults$$1, options);
+
   var x = 0;
   var y = 0;
   var index = 0;
+  var containerOffset = {
+    top: 0,
+    left: 0
+  };
   var distances = [];
+  var width = opts.container === window ? window.innerWidth : opts.container.clientWidth;
+  var height = opts.container === window ? window.innerHeight : opts.container.clientHeight;
+
+  if (opts.container !== window) {
+    var containerRect = opts.container.getBoundingClientRect();
+    containerOffset.left = containerRect.left + document.body.scrollLeft;
+    containerOffset.top = containerRect.top + document.body.scrollTop;
+  }
+
   if (position.constructor === Array) {
     if (position[0] < 0 || position[1] < 0) {
       throw new Error('Coordinates cannot be negative values');
@@ -228,55 +249,62 @@ function closestElementTo(position, nodes) {
   } else if (typeof position === 'string') {
     switch (position) {
       case 'CENTER':
-        x = window.innerWidth / 2;
-        y = window.innerHeight / 2;
+        x = width / 2;
+        y = height / 2;
         break;
       case 'LEFT_TOP':
         x = 0;
         y = 0;
         break;
       case 'RIGHT_TOP':
-        x = window.innerWidth;
+        x = width;
         y = 0;
         break;
       case 'CENTER_TOP':
-        x = window.innerWidth / 2;
+        x = width / 2;
         y = 0;
         break;
       case 'LEFT_CENTER':
         x = 0;
-        y = window.innerHeight / 2;
+        y = height / 2;
         break;
       case 'LEFT_BOTTOM':
         x = 0;
-        y = window.innerHeight;
+        y = height;
         break;
       case 'RIGHT_BOTTOM':
-        x = window.innerWidth;
-        y = window.innerHeight;
+        x = width;
+        y = height;
         break;
       case 'CENTER_BOTTOM':
-        x = window.innerWidth / 2;
-        y = window.innerHeight;
+        x = width / 2;
+        y = height;
         break;
       case 'RIGHT_CENTER':
-        x = window.innerWidth;
-        y = window.innerHeight / 2;
+        x = width;
+        y = height / 2;
         break;
       default:
-        x = window.innerWidth / 2;
-        y = window.innerHeight / 2;
+        x = width / 2;
+        y = height / 2;
     }
   } else {
     throw new Error('Invalid position');
   }
   [].concat(toConsumableArray(nodes)).forEach(function (el) {
+    var distance = 0;
     var boundingRect = el.getBoundingClientRect();
     var offset = {
-      top: boundingRect.top + document.body.scrollTop,
-      left: boundingRect.left + document.body.scrollLeft
+      left: boundingRect.left + (opts.container === window ? document.body.scrollLeft : -containerOffset.left),
+      top: boundingRect.top + (opts.container === window ? document.body.scrollTop : -containerOffset.top)
     };
-    var distance = Math.pow(offset.left - x, 2) + Math.pow(offset.top - y, 2);
+    if (opts.axis.toLowerCase() === "x") {
+      distance = Math.pow(offset.left - x, 2);
+    } else if (opts.axis.toLowerCase() === "y") {
+      distance = Math.pow(offset.top - y, 2);
+    } else {
+      distance = Math.pow(offset.left - x, 2) + Math.pow(offset.top - y, 2);
+    }
     distances.push(distance);
   });
 
@@ -285,4 +313,4 @@ function closestElementTo(position, nodes) {
   return nodes[index];
 }
 
-module.exports = closestElementTo;
+module.exports = findMyEl;
