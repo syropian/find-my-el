@@ -4,7 +4,6 @@
   "description": "Locates the DOM element closest to a given set of coordinates",
   "main": "index.js",
   "files": [
-    "index.js",
     "index.umd.js"
   ],
   "scripts": {
