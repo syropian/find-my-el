@@ -1,3 +1,10 @@
+/*!
+* find-my-el - Locates the DOM element closest to a given set of coordinates
+* @version 1.1.3
+*
+* @copyright Collin Henderson <collin@syropia.net>
+* @license MIT
+*/
 'use strict';
 
 var asyncGenerator = function () {

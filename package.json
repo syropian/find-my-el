@@ -10,7 +10,8 @@
     "build:all": "npm run build && npm run build:umd",
     "build": "BUILD_ENV=cjs rollup -c",
     "build:umd": "BUILD_ENV=umd rollup -c && cp index.umd.js demo",
-    "test": "karma start karma.conf.js --single-run true --auto-watch false"
+    "test": "karma start karma.conf.js --single-run true --auto-watch false",
+    "version": "npm run build:all"
   },
   "keywords": [
     "DOM",
