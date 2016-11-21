@@ -1,6 +1,6 @@
 /*!
 * find-my-el - Locates the DOM element closest to a given set of coordinates
-* @version 1.1.4
+* @version 1.1.5
 *
 * @copyright Collin Henderson <collin@syropia.net>
 * @license MIT
