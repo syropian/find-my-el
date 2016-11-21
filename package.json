@@ -1,6 +1,6 @@
 {
   "name": "find-my-el",
-  "version": "1.1.5",
+  "version": "1.1.4",
   "description": "Locates the DOM element closest to a given set of coordinates",
   "main": "index.js",
   "files": [
@@ -11,7 +11,7 @@
     "build": "BUILD_ENV=cjs rollup -c",
     "build:umd": "BUILD_ENV=umd rollup -c && cp index.umd.js demo",
     "test": "karma start karma.conf.js --single-run true --auto-watch false",
-    "version": "npm run build:all && git add -A && git commit -m 'Version Build'",
+    "version": "npm run build:all && git add index.js index.umd.js demo/index.umd.js && git commit -m 'Version Build'",
     "postversion": "git push"
   },
   "keywords": [
