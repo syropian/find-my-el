@@ -77,8 +77,8 @@ export default function findMyEl(position, nodes, options = {}) {
     let distance = 0
     const boundingRect = el.getBoundingClientRect()
     const offset = {
-      left: boundingRect.left + (opts.container === window ? document.body.scrollLeft : -containerOffset.left),
-      top: boundingRect.top + (opts.container === window ? document.body.scrollTop : -containerOffset.top),
+      left: (boundingRect.left + (el.clientWidth / 2)) + (opts.container === window ? document.body.scrollLeft : -containerOffset.left),
+      top: (boundingRect.top + (el.clientHeight / 2)) + (opts.container === window ? document.body.scrollTop : -containerOffset.top),
     }
     if (opts.axis.toLowerCase() === "x") {
       distance = Math.pow((offset.left - x), 2)

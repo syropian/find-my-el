@@ -18,11 +18,19 @@
         margin: 0 auto;
         height: 30vh;
         overflow: auto;
+        position: relative;
+      }
+      .center-line {
+        background: #6dd38f;
+        transform: translateY(-50%);
+        position: fixed; top: 50%; right: 0; left:0;
+        height: 2px;
       }
     </style>
   </head>
   <body>
     <div class="container" onscroll="scrolled()">
+      <div class="center-line"></div>
       <ul>
         <li>Hello World</li>
         <li>Hello World</li>
