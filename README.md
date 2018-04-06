@@ -16,7 +16,7 @@ npm install find-my-el --save
 
 ### UMD Build
 
-https://unpkg.com/find-my-el/find-my-el.min.js
+https://unpkg.com/find-my-el/dist/find-my-el.min.js
 
 ## Usage
 
