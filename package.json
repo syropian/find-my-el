@@ -2,17 +2,19 @@
   "name": "find-my-el",
   "version": "1.1.6",
   "description": "Locates the DOM element closest to a given set of coordinates",
-  "main": "index.js",
+  "main": "dist/find-my-el.cjs.js",
+  "module": "dist/find-my-el.es.js",
+  "unpkg": "dist/find-my-el.min.js",
   "files": [
-    "index.umd.js"
+    "dist"
   ],
   "scripts": {
-    "build:all": "npm run build && npm run build:umd",
-    "build": "BUILD_ENV=cjs rollup -c",
-    "build:umd": "BUILD_ENV=umd rollup -c && cp index.umd.js demo",
-    "test": "karma start karma.conf.js --single-run true --auto-watch false",
-    "version": "npm run build:all && git add index.js index.umd.js demo/index.umd.js && git commit -m 'Version Build'",
-    "postversion": "git push"
+    "build": "bili",
+    "test": "jest",
+    "watch-test": "jest --watchAll",
+    "example": "poi example/index.js",
+    "example:build": "rm -rf example/dist && poi build",
+    "example:deploy": "git subtree push --prefix example/dist origin gh-pages"
   },
   "keywords": [
     "DOM",
@@ -20,31 +22,32 @@
     "find",
     "coordinates"
   ],
-  "author": {
-    "name": "Collin Henderson",
-    "email": "collin@syropia.net",
-    "url": "http://syropia.net"
-  },
-  "engines": {
-    "node": ">=4"
-  },
+  "author": "Collin Henderson <collin@syropia.net>",
   "license": "MIT",
-  "repository": "syropian/find-my-el",
+  "repository": "https://github.com/syropian/find-my-el",
+  "bili": {
+    "format": [
+      "cjs",
+      "umd-min",
+      "es"
+    ],
+    "moduleName": "FindMyEl"
+  },
+  "poi": {
+    "entry": "example/index.js",
+    "outDir": "example/dist",
+    "publicPath": "/find-my-el/"
+  },
   "devDependencies": {
-    "babel-core": "^6.18.2",
-    "babel-plugin-transform-runtime": "^6.15.0",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-es2015-rollup": "^1.2.0",
-    "babel-runtime": "^6.18.0",
-    "jasmine-core": "^2.5.2",
-    "jquery": "^3.1.1",
-    "karma": "^1.3.0",
-    "karma-jasmine": "^1.0.2",
-    "karma-phantomjs-launcher": "^1.0.2",
-    "karma-spec-reporter": "^0.0.26",
-    "phantomjs-prebuilt": "^2.1.13",
-    "rollup": "^0.36.3",
-    "rollup-plugin-babel": "^2.6.1",
-    "rollup-plugin-uglify": "^1.0.1"
+    "@babel/core": "^7.0.0-beta.44",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.44",
+    "babel-core": "^7.0.0-0",
+    "babel-jest": "^22.4.3",
+    "babel-preset-env": "^1.6.1",
+    "bili": "^3.0.15",
+    "jest": "^22.4.3",
+    "jquery": "^3.3.1",
+    "poi": "^10.0.0-beta.6",
+    "vue-draggable-resizable": "^1.7.1"
   }
 }
