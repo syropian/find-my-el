@@ -1,6 +1,6 @@
 {
   "name": "find-my-el",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Locates the DOM element closest to a given set of coordinates",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
