@@ -27,7 +27,7 @@
   </div>
 </template>
 <script>
-import findMyEl from '../src'
+import findMyEl from '../dist'
 import VueDraggableResizable from 'vue-draggable-resizable'
 export default {
   data() {

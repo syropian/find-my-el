@@ -2,12 +2,13 @@
   "name": "find-my-el",
   "version": "2.0.1",
   "description": "Locates the DOM element closest to a given set of coordinates",
-  "main": "dist/find-my-el.cjs.js",
-  "module": "dist/find-my-el.es.js",
-  "unpkg": "dist/find-my-el.min.js",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "unpkg": "dist/index.umd.min.js",
   "files": [
     "dist"
   ],
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "bili",
     "test": "jest",
@@ -26,12 +27,15 @@
   "license": "MIT",
   "repository": "https://github.com/syropian/find-my-el",
   "bili": {
-    "format": [
-      "cjs",
-      "umd-min",
-      "es"
-    ],
-    "moduleName": "FindMyEl"
+    "input": "src/index.ts",
+    "output": {
+      "format": [
+        "cjs",
+        "umd-min",
+        "es"
+      ],
+      "moduleName": "FindMyEl"
+    }
   },
   "poi": {
     "entry": "example/index.js",
@@ -44,10 +48,12 @@
     "babel-core": "^7.0.0-0",
     "babel-jest": "^22.4.3",
     "babel-preset-env": "^1.6.1",
-    "bili": "^3.0.15",
+    "bili": "^4.8.1",
     "jest": "^22.4.3",
     "jquery": "^3.3.1",
     "poi": "^10.0.0-beta.6",
+    "rollup-plugin-typescript2": "^0.24.2",
+    "typescript": "^3.6.3",
     "vue-draggable-resizable": "^1.7.1"
   }
 }
