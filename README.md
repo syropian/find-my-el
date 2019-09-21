@@ -1,4 +1,4 @@
-# find-my-el [![Actions Status](https://github.com/syropian/find-my-el/workflows/test/badge.svg)](https://github.com/syropian/find-my-el/actions)
+# find-my-el [![Actions Status](https://github.com/syropian/find-my-el/workflows/Node CI/badge.svg)](https://github.com/syropian/find-my-el/actions)
 
 > Locates the DOM element closest to a given set of coordinates.
 
