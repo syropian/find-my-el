@@ -1,14 +1,23 @@
-type PositionString = "CENTER" | "LEFT_TOP" | "RIGHT_TOP" | "CENTER_TOP" | "LEFT_CENTER" | "LEFT_BOTTOM" | "RIGHT_BOTTOM" | "CENTER_BOTTOM" | "RIGHT_CENTER"
+type PositionString =
+  | "CENTER"
+  | "LEFT_TOP"
+  | "RIGHT_TOP"
+  | "CENTER_TOP"
+  | "LEFT_CENTER"
+  | "LEFT_BOTTOM"
+  | "RIGHT_BOTTOM"
+  | "CENTER_BOTTOM"
+  | "RIGHT_CENTER"
 type AxisString = "x" | "y" | "both"
 type ContainerPosition = [number, number] | PositionString
 
 interface IOptions {
-  container?: Node | Element | HTMLElement | Window,
+  container?: Element | Window
   axis?: AxisString
 }
 
 interface IContainerOffset {
-  top: number,
+  top: number
   left: number
 }
 
@@ -44,8 +53,8 @@ export default function(position: ContainerPosition, nodes: NodeList, options: I
     if (position[0] < 0 || position[1] < 0) {
       throw new Error("Coordinates cannot be negative values")
     }
-    x = (position[0] as number)
-    y = (position[1] as number)
+    x = position[0] as number
+    y = position[1] as number
   } else if (typeof position === "string") {
     switch (position) {
       case "CENTER":

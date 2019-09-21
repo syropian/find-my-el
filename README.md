@@ -40,7 +40,7 @@ findMyEl([x, y], nodes)
 
 #### position
 
-Type: `string` or `array`
+Type: `[ContainerPosition](https://github.com/syropian/find-my-el/blob/js-to-ts/dist/index.d.ts#L3)`
 
 The coordinates to check against. You may use the [position keywords](#position-keywords), or pass an array of `[x, y]` coordinates.
 
@@ -54,7 +54,7 @@ The collection of nodes to check.
 
 ##### container
 
-Type: `Element`
+Type: `Element | Window`
 
 Default: `window`
 
@@ -62,7 +62,7 @@ Restricts the surface area of the check to the container bounds.
 
 ##### axis
 
-Type: `string`
+Type: `[AxisString](https://github.com/syropian/find-my-el/blob/js-to-ts/dist/index.d.ts#L2)`
 
 Default: `both`
 
@@ -74,15 +74,15 @@ There are various keywords you can use as a shorthand for various positions. The
 
 **Keywords**:
 
-* `CENTER`
-* `LEFT_TOP`
-* `RIGHT_TOP`
-* `CENTER_TOP`
-* `LEFT_CENTER`
-* `RIGHT_CENTER`
-* `LEFT_BOTTOM`
-* `RIGHT_BOTTOM`
-* `CENTER_BOTTOM`
+- `CENTER`
+- `LEFT_TOP`
+- `RIGHT_TOP`
+- `CENTER_TOP`
+- `LEFT_CENTER`
+- `RIGHT_CENTER`
+- `LEFT_BOTTOM`
+- `RIGHT_BOTTOM`
+- `CENTER_BOTTOM`
 
 ## How is this different from `document.getElementAtPoint`?
 
@@ -92,13 +92,13 @@ There are various keywords you can use as a shorthand for various positions. The
 
 ```bash
 # To run the example
-$ npm run example
+$ yarn run example
 
 # To run the tests
-$ npm test
+$ yarn test
 
 # To publish the dist file
-$ npm run build
+$ yarn run build
 ```
 
 MIT © [Collin Henderson](https://github.com/syropian)
