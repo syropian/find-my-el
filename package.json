@@ -2,19 +2,21 @@
   "name": "find-my-el",
   "version": "2.0.1",
   "description": "Locates the DOM element closest to a given set of coordinates",
-  "main": "dist/find-my-el.cjs.js",
-  "module": "dist/find-my-el.es.js",
-  "unpkg": "dist/find-my-el.min.js",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "unpkg": "dist/index.umd.min.js",
   "files": [
     "dist"
   ],
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "bili",
     "test": "jest",
-    "watch-test": "jest --watchAll",
-    "example": "poi example/index.js",
-    "example:build": "rm -rf example/dist && poi build",
-    "example:deploy": "git subtree push --prefix example/dist origin gh-pages"
+    "test:watch": "jest --watchAll",
+    "example": "poi --serve",
+    "example:build": "rm -rf example/dist && poi --prod",
+    "example:deploy": "npm run example:build && gh-pages -d example/dist",
+    "version": "npm run example:deploy"
   },
   "keywords": [
     "DOM",
@@ -26,28 +28,35 @@
   "license": "MIT",
   "repository": "https://github.com/syropian/find-my-el",
   "bili": {
-    "format": [
-      "cjs",
-      "umd-min",
-      "es"
-    ],
-    "moduleName": "FindMyEl"
+    "input": "src/index.ts",
+    "output": {
+      "format": [
+        "cjs",
+        "umd-min",
+        "es"
+      ],
+      "moduleName": "FindMyEl"
+    }
   },
   "poi": {
     "entry": "example/index.js",
-    "outDir": "example/dist",
-    "publicPath": "/find-my-el/"
+    "output": {
+      "dir": "example/dist",
+      "publicUrl": "/find-my-el/"
+    }
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.44",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.44",
-    "babel-core": "^7.0.0-0",
-    "babel-jest": "^22.4.3",
-    "babel-preset-env": "^1.6.1",
-    "bili": "^3.0.15",
-    "jest": "^22.4.3",
-    "jquery": "^3.3.1",
-    "poi": "^10.0.0-beta.6",
-    "vue-draggable-resizable": "^1.7.1"
-  }
+    "@types/jest": "^24.0.18",
+    "bili": "^4.8.1",
+    "gh-pages": "^2.1.1",
+    "jest": "^24.9.0",
+    "poi": "^12.7.2",
+    "rollup-plugin-typescript2": "^0.24.2",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.6.3",
+    "vue": "^2.6.10",
+    "vue-draggable-resizable": "^1.7.1",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "dependencies": {}
 }

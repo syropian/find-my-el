@@ -1,23 +1,49 @@
-export default function(position, nodes, options = {}) {
-  const defaults = {
+type PositionString =
+  | "CENTER"
+  | "LEFT_TOP"
+  | "RIGHT_TOP"
+  | "CENTER_TOP"
+  | "LEFT_CENTER"
+  | "LEFT_BOTTOM"
+  | "RIGHT_BOTTOM"
+  | "CENTER_BOTTOM"
+  | "RIGHT_CENTER"
+type AxisString = "x" | "y" | "both"
+type ContainerPosition = [number, number] | PositionString
+
+interface IOptions {
+  container?: Element | Window
+  axis?: AxisString
+}
+
+interface IContainerOffset {
+  top: number
+  left: number
+}
+
+export default function(position: ContainerPosition, nodes: NodeList, options: IOptions): Node {
+  const defaults: IOptions = {
     container: window,
     axis: "both"
   }
   const opts = { ...defaults, options }
 
-  let x = 0
-  let y = 0
-  let index = 0
-  const containerOffset = {
+  let x: number = 0
+  let y: number = 0
+  let index: number = 0
+
+  const containerOffset: IContainerOffset = {
     top: 0,
     left: 0
   }
-  const distances = []
-  const width = opts.container === window ? window.innerWidth : opts.container.clientWidth
-  const height = opts.container === window ? window.innerHeight : opts.container.clientHeight
+
+  const distances: number[] = []
+
+  const width: number = opts.container === window ? window.innerWidth : (opts.container as Element).clientWidth
+  const height: number = opts.container === window ? window.innerHeight : (opts.container as Element).clientHeight
 
   if (opts.container !== window) {
-    const containerRect = opts.container.getBoundingClientRect()
+    const containerRect = (opts.container as Element).getBoundingClientRect()
 
     containerOffset.left = containerRect.left + document.body.scrollLeft
     containerOffset.top = containerRect.top + document.body.scrollTop
@@ -27,8 +53,8 @@ export default function(position, nodes, options = {}) {
     if (position[0] < 0 || position[1] < 0) {
       throw new Error("Coordinates cannot be negative values")
     }
-    x = position[0]
-    y = position[1]
+    x = position[0] as number
+    y = position[1] as number
   } else if (typeof position === "string") {
     switch (position) {
       case "CENTER":
@@ -74,9 +100,9 @@ export default function(position, nodes, options = {}) {
   } else {
     throw new Error("Invalid position")
   }
-  ;[...nodes].forEach(el => {
+  nodes.forEach((el: Node) => {
     let distance = 0
-    const boundingRect = el.getBoundingClientRect()
+    const boundingRect = (el as Element).getBoundingClientRect()
     const offset = {
       left:
         boundingRect.left +
