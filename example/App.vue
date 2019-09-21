@@ -12,52 +12,80 @@
       <option value="RIGHT_CENTER">Right Center</option>
       <option value="CENTER">Center</option>
     </select>
-    <vue-draggable-resizable :w="100" :h="100" :x="20" :y="20" :resizable="false" v-on:dragging="onDrag">
+    <vue-draggable-resizable
+      :w="100"
+      :h="100"
+      :x="20"
+      :y="20"
+      :resizable="false"
+      v-on:dragging="onDrag"
+    >
       <div class="box">Drag Me!</div>
     </vue-draggable-resizable>
-    <vue-draggable-resizable :w="100" :h="100" :x="800" :y="20" :resizable="false" v-on:dragging="onDrag">
+    <vue-draggable-resizable
+      :w="100"
+      :h="100"
+      :x="800"
+      :y="20"
+      :resizable="false"
+      v-on:dragging="onDrag"
+    >
       <div class="box">Drag Me!</div>
     </vue-draggable-resizable>
-    <vue-draggable-resizable :w="100" :h="100" :x="20" :y="800" :resizable="false" v-on:dragging="onDrag">
+    <vue-draggable-resizable
+      :w="100"
+      :h="100"
+      :x="20"
+      :y="800"
+      :resizable="false"
+      v-on:dragging="onDrag"
+    >
       <div class="box">Drag Me!</div>
     </vue-draggable-resizable>
-    <vue-draggable-resizable :w="100" :h="100" :x="800" :y="800" :resizable="false" v-on:dragging="onDrag">
+    <vue-draggable-resizable
+      :w="100"
+      :h="100"
+      :x="800"
+      :y="800"
+      :resizable="false"
+      v-on:dragging="onDrag"
+    >
       <div class="box">Drag Me!</div>
     </vue-draggable-resizable>
   </div>
 </template>
 <script>
-import findMyEl from '../dist'
-import VueDraggableResizable from 'vue-draggable-resizable'
+import findMyEl from "../dist";
+import VueDraggableResizable from "vue-draggable-resizable";
 export default {
   data() {
     return {
       coords: "LEFT_TOP"
-    }
+    };
   },
   components: {
     VueDraggableResizable
   },
   watch: {
     coords: function() {
-      this.highlightClosest()
+      this.highlightClosest();
     }
   },
   methods: {
     onDrag() {
-      this.highlightClosest()
+      this.highlightClosest();
     },
     highlightClosest() {
-      const $els = document.querySelectorAll('.box')
-      ;[...$els].forEach(node => node.classList.remove('active'))
-      const $closest = findMyEl(this.coords, document.querySelectorAll('.box'))
-      $closest.classList.add('active')
+      const $els = document.querySelectorAll(".box");
+      $els.forEach(node => node.classList.remove("active"));
+      const $closest = findMyEl(this.coords, document.querySelectorAll(".box"));
+      $closest.classList.add("active");
     }
   },
   mounted() {
-    this.highlightClosest()
+    this.highlightClosest();
   }
-}
+};
 </script>
 <style>
 * {

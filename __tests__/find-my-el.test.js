@@ -1,38 +1,44 @@
-import jQuery from "jquery"
-import findMyEl from "../src"
-
-window.$ = jQuery
+const findMyEl = require("../src").default
 
 const WINDOW_WIDTH = 1024
 const WINDOW_HEIGHT = 768
 
+const qs = s => document.querySelector(s)
+const qsa = s => document.querySelectorAll(s)
+
 const createMockEl = (klass, styles) => {
+  const div = document.createElement("div")
   const sharedCSS = {
     background: "#5dc1a4",
     position: "absolute",
     width: "50px",
     height: "50px"
   }
-  const div = document.createElement("div")
-  div.classList.add("el", klass)
   Object.assign(div.style, styles)
+  div.classList.add("el", klass)
+
   let { top = 0, right = 0, bottom = 0, left = 0 } = styles
   top = parseInt(top, 10)
   right = parseInt(right, 10)
   bottom = parseInt(bottom, 10)
   left = parseInt(left, 10)
+
   if (!top) {
     top = WINDOW_HEIGHT - (50 - bottom)
   }
+
   if (!right) {
     right = 50 + left
   }
+
   if (!bottom) {
     bottom = 50 + top
   }
+
   if (!left) {
     left = WINDOW_WIDTH - (50 - right)
   }
+
   div.getBoundingClientRect = () => ({
     top,
     right,
@@ -45,11 +51,13 @@ const createMockEl = (klass, styles) => {
 }
 
 beforeAll(function() {
-  $("html, body").css({
-    position: "relative",
-    width: `${WINDOW_WIDTH}px`,
-    height: `${WINDOW_HEIGHT}px`,
-    minHeight: "100vh"
+  ;[document.documentElement, document.body].forEach($el => {
+    Object.assign($el.style, {
+      position: "relative",
+      width: `${WINDOW_WIDTH}px`,
+      height: `${WINDOW_HEIGHT}px`,
+      minHeight: "100vh"
+    })
   })
 
   var $first = createMockEl("first", { top: "20px", left: "20px" })
@@ -66,25 +74,25 @@ beforeAll(function() {
 })
 describe("find-my-el", function() {
   it("finds the correct element at various positions", function() {
-    var $els = document.querySelectorAll(".el")
-    expect(findMyEl("LEFT_TOP", $els).classList.contains("first")).toBe(true)
-    expect(findMyEl("RIGHT_TOP", $els).classList.contains("second")).toBe(true)
-    expect(findMyEl("LEFT_BOTTOM", $els).classList.contains("third")).toBe(true)
-    expect(findMyEl("RIGHT_BOTTOM", $els).classList.contains("fourth")).toBe(true)
-    expect(findMyEl("CENTER", $els).classList.contains("fifth")).toBe(true)
+    var $els = qsa(".el")
+    expect(findMyEl("LEFT_TOP", $els).matches(".first")).toBe(true)
+    expect(findMyEl("RIGHT_TOP", $els).matches(".second")).toBe(true)
+    expect(findMyEl("LEFT_BOTTOM", $els).matches(".third")).toBe(true)
+    expect(findMyEl("RIGHT_BOTTOM", $els).matches(".fourth")).toBe(true)
+    expect(findMyEl("CENTER", $els).matches(".fifth")).toBe(true)
   })
   it("accepts an array with x and y coordinates", function() {
-    var $els = document.querySelectorAll(".el")
-    expect(findMyEl([window.innerWidth / 2, window.innerHeight / 2], $els).classList.contains("fifth")).toBe(true)
+    var $els = qsa(".el")
+    expect(findMyEl([window.innerWidth / 2, window.innerHeight / 2], $els).matches(".fifth")).toBe(true)
   })
   it("does not accept negative values when passing an array", function() {
-    var $els = document.querySelectorAll(".el")
+    var $els = qsa(".el")
     expect(() => {
       findMyEl([-1, -1], $els)
     }).toThrow()
   })
   it("accepts an array or a string as the position arg, but no other data type", function() {
-    const $els = document.querySelectorAll(".el")
+    const $els = qsa(".el")
 
     expect(() => {
       findMyEl([50, 50], $els)

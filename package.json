@@ -12,10 +12,11 @@
   "scripts": {
     "build": "bili",
     "test": "jest",
-    "watch-test": "jest --watchAll",
-    "example": "poi example/index.js",
-    "example:build": "rm -rf example/dist && poi build",
-    "example:deploy": "git subtree push --prefix example/dist origin gh-pages"
+    "test:watch": "jest --watchAll",
+    "example": "poi --serve",
+    "example:build": "rm -rf example/dist && poi --prod",
+    "example:deploy": "npm run example:build && gh-pages -d example/dist",
+    "version": "npm run example:deploy"
   },
   "keywords": [
     "DOM",
@@ -39,21 +40,23 @@
   },
   "poi": {
     "entry": "example/index.js",
-    "outDir": "example/dist",
-    "publicPath": "/find-my-el/"
+    "output": {
+      "dir": "example/dist",
+      "publicUrl": "/find-my-el/"
+    }
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.44",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.44",
-    "babel-core": "^7.0.0-0",
-    "babel-jest": "^22.4.3",
-    "babel-preset-env": "^1.6.1",
+    "@types/jest": "^24.0.18",
     "bili": "^4.8.1",
-    "jest": "^22.4.3",
-    "jquery": "^3.3.1",
-    "poi": "^10.0.0-beta.6",
+    "gh-pages": "^2.1.1",
+    "jest": "^24.9.0",
+    "poi": "^12.7.2",
     "rollup-plugin-typescript2": "^0.24.2",
+    "ts-jest": "^24.1.0",
     "typescript": "^3.6.3",
-    "vue-draggable-resizable": "^1.7.1"
-  }
+    "vue": "^2.6.10",
+    "vue-draggable-resizable": "^1.7.1",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "dependencies": {}
 }
