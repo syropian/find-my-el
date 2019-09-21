@@ -40,7 +40,7 @@ findMyEl([x, y], nodes)
 
 #### position
 
-Type: `[ContainerPosition](https://github.com/syropian/find-my-el/blob/js-to-ts/dist/index.d.ts#L3)`
+Type: [ContainerPosition](https://github.com/syropian/find-my-el/blob/js-to-ts/dist/index.d.ts#L3)
 
 The coordinates to check against. You may use the [position keywords](#position-keywords), or pass an array of `[x, y]` coordinates.
 
@@ -62,7 +62,7 @@ Restricts the surface area of the check to the container bounds.
 
 ##### axis
 
-Type: `[AxisString](https://github.com/syropian/find-my-el/blob/js-to-ts/dist/index.d.ts#L2)`
+Type: [AxisString](https://github.com/syropian/find-my-el/blob/js-to-ts/dist/index.d.ts#L2)
 
 Default: `both`
 
