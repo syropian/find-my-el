@@ -1,4 +1,4 @@
-# find-my-el [![Build Status](https://travis-ci.org/syropian/find-my-el.svg?branch=master)](https://travis-ci.org/syropian/find-my-el)
+# find-my-el
 
 > Locates the DOM element closest to a given set of coordinates.
 
